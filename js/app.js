@@ -1,7 +1,19 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const cardList = ["fa fa-diamond", "fa fa-paper-plane-o" , "fa fa-anchor" , "fa fa-bolt" , "fa fa-cube" ,"fa fa-leaf","fa fa-bicycle","fa fa-bomb" ];
+let count = 0;
+let moves = 3;
+let opencard = [];
+const cards = document.getElementsByClassName("card");
+const main = document.querySelector(".deck");
+let arr = Array.prototype.slice.call(cards);
+arr = shuffle(arr);
+let txt="";
+for (var i = 0; i < arr.length ; i++) {
+	txt = txt + arr[i].outerHTML + "\n";
+}
+main.innerHTML = txt ; 
 
 /*
  * Display the cards on the page
@@ -9,7 +21,11 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+function startgame () {
+	opencard = [];
+	count =0;
+	moves = 3;
+}
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -24,8 +40,35 @@ function shuffle(array) {
 
     return array;
 }
-
-
+function open (crd) {
+	opencard[count] = crd;
+	count +=1;
+	crd.className= "card show open";
+	if (count == 2){
+		check();
+	} 
+};
+function check () {
+	if (opencard[0].firstElementChild.className == opencard[1].firstElementChild.className){
+		opencard[0].className="card match";
+		opencard[1].className="card match";
+		startgame();
+	}else {
+		setTimeout(dismatch,500)
+	}
+};
+function dismatch () {
+		// opencard[0].style.backgroundColor='red';
+		// opencard[1].style.backgroundColor='red';
+		opencard[0].className="card";
+		opencard[1].className="card";
+		count =0;
+};
+main.addEventListener('click',function(event){
+	if (event.target.className == "card" && count < 2) {
+		open(event.target);
+	}
+});
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
