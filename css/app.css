@@ -80,6 +80,26 @@ h1 {
     background: #02ccba;
     font-size: 33px;
 }
+/*.deck .animated{
+    border-style: solid;
+    border-width: 1px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: #0000FF;
+
+    transition: transform 1s linear;
+     transform-origin: center;
+    transform-style: preserve-3D;
+
+}
+
+.deck .mov {
+     width: 200px;
+    height: 200px;
+    background-color: red;
+    transform: rotate(30deg);
+}*/
 
 /*
  * Styles for the Score Panel

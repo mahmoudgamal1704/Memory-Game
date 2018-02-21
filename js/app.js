@@ -7,6 +7,9 @@ let moves = 3;
 let opencard = [];
 const cards = document.getElementsByClassName("card");
 const main = document.querySelector(".deck");
+// const test = document.querySelector(".animated");
+const rest = document.querySelector(".restart");
+const num = document.querySelector("span");
 let arr = Array.prototype.slice.call(cards);
 arr = shuffle(arr);
 let txt="";
@@ -15,6 +18,7 @@ for (var i = 0; i < arr.length ; i++) {
 }
 main.innerHTML = txt ; 
 
+rest.addEventListener('click',startgame);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -22,9 +26,7 @@ main.innerHTML = txt ;
  *   - add each card's HTML to the page
  */
 function startgame () {
-	opencard = [];
-	count =0;
-	moves = 3;
+	location.reload();
 }
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -52,7 +54,11 @@ function check () {
 	if (opencard[0].firstElementChild.className == opencard[1].firstElementChild.className){
 		opencard[0].className="card match";
 		opencard[1].className="card match";
-		startgame();
+		if (document.querySelectorAll(".card").length == document.querySelectorAll(".match").length){
+			setTimeout(win,500);
+		}
+		opencard = [];
+		count =0;
 	}else {
 		setTimeout(dismatch,500)
 	}
@@ -63,12 +69,24 @@ function dismatch () {
 		opencard[0].className="card";
 		opencard[1].className="card";
 		count =0;
+		moves -=1;
+		num.textContent= moves;
+		if (moves == 0 ){
+			setTimeout(end,500)
+		}
 };
 main.addEventListener('click',function(event){
 	if (event.target.className == "card" && count < 2) {
 		open(event.target);
 	}
 });
+function end (){
+	alert("you used 3 try please start from begin")
+	startgame();
+}
+function win (){
+	alert("congratulation");
+}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
