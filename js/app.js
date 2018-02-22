@@ -1,6 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
+//declare variables
 const cardList = ["fa fa-diamond", "fa fa-paper-plane-o" , "fa fa-anchor" , "fa fa-bolt" , "fa fa-cube" ,"fa fa-leaf","fa fa-bicycle","fa fa-bomb" ];
 let count = 0;
 let tryes = 3;
@@ -9,17 +10,22 @@ let opencard = [];
 const cards = document.getElementsByClassName("card");
 const main = document.querySelector(".deck");
 const star = document.getElementsByClassName("fa-star");
-// const test = document.querySelector(".animated");
+const secound = document.querySelector(".secound");
+const minuet = document.querySelector(".minuet");
 const rest = document.querySelector(".restart");
 const num = document.querySelector("span");
 let arr = Array.prototype.slice.call(cards);
+var totalSeconds = 0;
+//set interval for time of play
+setInterval(setTime, 1000);
+// for shhuffle the cards and add them to the DOM
 arr = shuffle(arr);
 let txt="";
 for (var i = 0; i < arr.length ; i++) {
 	txt = txt + arr[i].outerHTML + "\n";
 }
 main.innerHTML = txt ; 
-
+// add event reset for reset the game 
 rest.addEventListener('click',startgame);
 /*
  * Display the cards on the page
@@ -27,13 +33,14 @@ rest.addEventListener('click',startgame);
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+ // fn for start game
 function startgame () {
 	location.reload();
 }
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -41,9 +48,25 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
+// timer fn for calculate time of finishing game
+function setTime() {
+  ++totalSeconds;
+  secound.innerHTML = pad(totalSeconds % 60);
+  minuet.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+
+// fn for opening the card
 function open (crd) {
 	opencard[count] = crd;
 	count +=1;
@@ -53,7 +76,8 @@ function open (crd) {
 		num.textContent= moves;
 		check();
 	} 
-};
+}
+// check fn for 2 open cards
 function check () {
 	if (opencard[0].firstElementChild.className == opencard[1].firstElementChild.className){
 		opencard[0].className="card match";
@@ -66,17 +90,19 @@ function check () {
 	}else {
 		setTimeout(mismatch,500)
 	}
-};
-function ret () {
+}
+// fn for return card and hidden the symbole again
+function close () {
 	opencard[0].className="card";
 	opencard[1].className="card";
 	opencard = [];
 }
+// fn for mismatch 2 open cards
 function mismatch () {
 		opencard[0].className= "card show open mismatch";
 		opencard[1].className= "card show open mismatch";
 		count = 3;
-		setTimeout(ret,500);
+		setTimeout(close,500);
 		count =0;
 		tryes -=1;
 		star[tryes].className += "-o";
@@ -84,19 +110,23 @@ function mismatch () {
 		if (tryes == 0 ){
 			setTimeout(end,500)
 		}
-};
+}
+// fn for lose the game and reset it 
+function end (){
+	alert("you used 3 try please start from begin")
+	startgame();
+}
+// fn for win the game and play again 
+function win (){
+	alert("congratulation");
+}
+// add event for click ad any card to open it 
 main.addEventListener('click',function(event){
 	if (event.target.className == "card" && count < 2 && opencard.length  < 2) {
 		open(event.target);
 	}
 });
-function end (){
-	alert("you used 3 try please start from begin")
-	startgame();
-}
-function win (){
-	alert("congratulation");
-}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
