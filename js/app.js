@@ -60,14 +60,21 @@ function check () {
 		opencard = [];
 		count =0;
 	}else {
-		setTimeout(dismatch,500)
+		setTimeout(mismatch,500)
 	}
 };
-function dismatch () {
+function ret () {
+	opencard[0].className="card";
+	opencard[1].className="card";
+	opencard = [];
+}
+function mismatch () {
 		// opencard[0].style.backgroundColor='red';
 		// opencard[1].style.backgroundColor='red';
-		opencard[0].className="card";
-		opencard[1].className="card";
+		opencard[0].className= "card show open mismatch";
+		opencard[1].className= "card show open mismatch";
+		count = 3;
+		setTimeout(ret,500);
 		count =0;
 		moves -=1;
 		num.textContent= moves;
@@ -76,7 +83,7 @@ function dismatch () {
 		}
 };
 main.addEventListener('click',function(event){
-	if (event.target.className == "card" && count < 2) {
+	if (event.target.className == "card" && count < 2 && opencard.length  < 2) {
 		open(event.target);
 	}
 });
