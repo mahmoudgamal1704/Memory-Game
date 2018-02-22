@@ -3,10 +3,12 @@
  */
 const cardList = ["fa fa-diamond", "fa fa-paper-plane-o" , "fa fa-anchor" , "fa fa-bolt" , "fa fa-cube" ,"fa fa-leaf","fa fa-bicycle","fa fa-bomb" ];
 let count = 0;
-let moves = 3;
+let tryes = 3;
+let moves = 0;
 let opencard = [];
 const cards = document.getElementsByClassName("card");
 const main = document.querySelector(".deck");
+const star = document.getElementsByClassName("fa-star");
 // const test = document.querySelector(".animated");
 const rest = document.querySelector(".restart");
 const num = document.querySelector("span");
@@ -47,6 +49,8 @@ function open (crd) {
 	count +=1;
 	crd.className= "card show open";
 	if (count == 2){
+		moves +=1;
+		num.textContent= moves;
 		check();
 	} 
 };
@@ -69,16 +73,15 @@ function ret () {
 	opencard = [];
 }
 function mismatch () {
-		// opencard[0].style.backgroundColor='red';
-		// opencard[1].style.backgroundColor='red';
 		opencard[0].className= "card show open mismatch";
 		opencard[1].className= "card show open mismatch";
 		count = 3;
 		setTimeout(ret,500);
 		count =0;
-		moves -=1;
-		num.textContent= moves;
-		if (moves == 0 ){
+		tryes -=1;
+		star[tryes].className += "-o";
+		
+		if (tryes == 0 ){
 			setTimeout(end,500)
 		}
 };

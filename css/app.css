@@ -129,26 +129,6 @@ h1 {
     /* When the animation is finished, start again */
     animation-iteration-count: 1;
 }
-/*.deck .animated{
-    border-style: solid;
-    border-width: 1px;
-    display: block;
-    width: 100px;
-    height: 100px;
-    background-color: #0000FF;
-
-    transition: transform 1s linear;
-     transform-origin: center;
-    transform-style: preserve-3D;
-
-}
-
-.deck .mov {
-     width: 200px;
-    height: 200px;
-    background-color: red;
-    transform: rotate(30deg);
-}*/
 
 /*
  * Styles for the Score Panel
@@ -163,7 +143,7 @@ h1 {
 .score-panel .stars {
     margin: 0;
     padding: 0;
-    display: inline-block;
+    display: inline-block ;
     margin: 0 5px 0 0;
 }
 
