@@ -148,7 +148,7 @@ h1 {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     position: fixed; /* Stay in place */
-   
+   background-color: #ffffff;
     padding-top: 100px;
 
 }

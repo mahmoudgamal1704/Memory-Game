@@ -117,15 +117,14 @@ function mismatch () {
 }
 // fn for lose the game and reset it 
 function end (){
-	model.style.display='block';
-	alert("you used 3 try please start from begin")
+	alert("You have exhausted your three attempts. Please try again")
 	startgame();
 }
 // fn for win the game and play again 
 function win (){
 	container.style.display="none";
 	model.style.display="block";
-	stxt.innerHTML = "with "+ moves + " moves and " + tryes + " stars <p>WOOOOOOOOO!</p> "
+	stxt.innerHTML = "with "+ moves + " moves and " + tryes + " stars <p>at " + minuet.innerHTML + " minuets and " + secound.innerHTML + " secounds" + "</p>"
 	// alert("congratulation");
 }
 // add event for click ad any card to open it 
@@ -134,11 +133,11 @@ main.addEventListener('click',function(event){
 		open(event.target);
 	}
 });
-main.addEventListener('dblclick',function(event){
-	container.style.display="none";
-	model.style.display="block";
-	stxt.innerHTML = "with "+ moves + " moves and " + tryes + " stars <p>WOOOOOOOOO!</p> "
+play.addEventListener('click' ,function () {
+	startgame();
+
 });
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
