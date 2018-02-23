@@ -142,6 +142,35 @@ h1 {
     padding-left: 30px;
     text-align: center;    
 }
+.model {
+    text-align: center;
+    display: none;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    position: fixed; /* Stay in place */
+   
+    padding-top: 100px;
+
+}
+.model .sign {
+    list-style: none;
+    display: inline-block;
+}
+.model .sign i {
+    font-size: 3em;
+    color: green;
+}
+.model .bigtxt {
+    font: 2em bold; 
+    font-family: "Gill Sans", sans-serif; 
+}
+.model .play {
+    height: 40px;
+    width: 200px;
+    font: 20px bold;
+    background-color: #01ccba;
+    color: white;
+}
 /*set parameter for animation card for wrong and match card */
 @keyframes shake {
     0% { transform: translate(1px, 1px) rotate(10deg); }

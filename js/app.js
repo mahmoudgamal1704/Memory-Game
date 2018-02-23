@@ -9,11 +9,15 @@ let moves = 0;
 let opencard = [];
 const cards = document.getElementsByClassName("card");
 const main = document.querySelector(".deck");
+const container = document.querySelector(".container");
 const star = document.getElementsByClassName("fa-star");
 const secound = document.querySelector(".secound");
 const minuet = document.querySelector(".minuet");
 const rest = document.querySelector(".restart");
 const num = document.querySelector("span");
+const model = document.querySelector(".model");
+const play = document.querySelector(".play");
+const stxt = document.querySelector(".smalltxt");
 let arr = Array.prototype.slice.call(cards);
 var totalSeconds = 0;
 //set interval for time of play
@@ -113,12 +117,16 @@ function mismatch () {
 }
 // fn for lose the game and reset it 
 function end (){
+	model.style.display='block';
 	alert("you used 3 try please start from begin")
 	startgame();
 }
 // fn for win the game and play again 
 function win (){
-	alert("congratulation");
+	container.style.display="none";
+	model.style.display="block";
+	stxt.innerHTML = "with "+ moves + " moves and " + tryes + " stars <p>WOOOOOOOOO!</p> "
+	// alert("congratulation");
 }
 // add event for click ad any card to open it 
 main.addEventListener('click',function(event){
@@ -126,7 +134,11 @@ main.addEventListener('click',function(event){
 		open(event.target);
 	}
 });
-
+main.addEventListener('dblclick',function(event){
+	container.style.display="none";
+	model.style.display="block";
+	stxt.innerHTML = "with "+ moves + " moves and " + tryes + " stars <p>WOOOOOOOOO!</p> "
+});
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
