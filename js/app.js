@@ -4,13 +4,15 @@
 //declare variables
 const cardList = ["fa fa-diamond", "fa fa-paper-plane-o" , "fa fa-anchor" , "fa fa-bolt" , "fa fa-cube" ,"fa fa-leaf","fa fa-bicycle","fa fa-bomb" ];
 let count = 0;
-let tryes = 3;
+let stars = 3;
 let moves = 0;
+let faltmov = 0;
 let opencard = [];
 const cards = document.getElementsByClassName("card");
 const main = document.querySelector(".deck");
 const container = document.querySelector(".container");
 const star = document.getElementsByClassName("fa-star");
+const staremp = document.getElementsByClassName("fa-star-o");
 const secound = document.querySelector(".secound");
 const minuet = document.querySelector(".minuet");
 const rest = document.querySelector(".restart");
@@ -105,26 +107,29 @@ function close () {
 function mismatch () {
 		opencard[0].className= "card show open mismatch";
 		opencard[1].className= "card show open mismatch";
-		count = 3;
 		setTimeout(close,500);
 		count =0;
-		tryes -=1;
-		star[tryes].className += "-o";
-		
-		if (tryes == 0 ){
+		faltmov += 1;
+		// make stars decrement by one every 4 wrong time 
+		if (faltmov%4 == 0 ) {
+			stars -=1;
+			star[stars].className += "-o";
+		}
+
+		if (staremp.length === 3 ){
 			setTimeout(end,500)
 		}
 }
 // fn for lose the game and reset it 
 function end (){
-	alert("You have exhausted your three attempts. Please try again")
+	alert("You have exhausted your attempts. Please try again")
 	startgame();
 }
 // fn for win the game and play again 
 function win (){
 	container.style.display="none";
 	model.style.display="block";
-	stxt.innerHTML = "with "+ moves + " moves and " + tryes + " stars <p>at " + minuet.innerHTML + " minuets and " + secound.innerHTML + " secounds" + "</p>"
+	stxt.innerHTML = "with "+ moves + " moves and " + star.length + " stars <p>at " + minuet.innerHTML + " minuets and " + secound.innerHTML + " secounds" + "</p>"
 	// alert("congratulation");
 }
 // add event for click ad any card to open it 
