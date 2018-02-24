@@ -22,7 +22,8 @@ body {
 }
 
 .container {
-    width: 60%;
+    width: 70%;
+    margin: auto;  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +40,7 @@ h1 {
  */
 
 .deck {
-    width: 660px;
+    width: 80%;
     min-height: 680px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
@@ -57,7 +58,8 @@ h1 {
     -webkit-transform: rotateY(360deg);
     -moz-transform: rotateY(360deg);
     height: 125px;
-    width: 125px;
+    width: 20%;
+    margin:  0 10px 0 10px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -91,7 +93,7 @@ h1 {
 }
 .deck .card.mismatch {
     height: 150px;
-    width: 150px;
+    width: 120px;
     transform: rotateY(0);
     background: red;
     cursor: default;
@@ -119,7 +121,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 50%;
     margin-bottom: 10px;
 }
 
@@ -171,6 +173,44 @@ h1 {
     font: 20px bold;
     background-color: #01ccba;
     color: white;
+}
+/*first breakPoint*/
+@media only screen and (max-width:1000px){
+    .deck .card {
+        height: 90px;
+        width: 30%;
+        margin-bottom: 10px;
+    }
+}
+/*first breakPoint*/
+@media only screen and (max-width:700px){
+    .score-panel {
+    width: 70%;
+    }
+    .deck .card {
+        height: 100px;
+        width: 35%;
+    }
+    .deck .card.mismatch {
+    height: 110px;
+    width: 40%;
+    }
+}
+@media only screen and (max-width:550px){
+    .deck {
+        width: 100%;
+    }
+    .score-panel {
+    width: 100%;
+    }
+    .deck .card {
+        height: 75px;
+        width: 30%;
+    }
+    .deck .card.mismatch {
+    height: 80px;
+    width: 35%;
+    }
 }
 /*set parameter for animation card for wrong and match card */
 @keyframes shake {

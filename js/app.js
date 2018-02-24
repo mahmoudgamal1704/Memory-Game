@@ -116,8 +116,7 @@ function mismatch () {
 		faltmov += 1;
 		// make stars decrement by one every 4 wrong time 
 		if (faltmov%4 === 0 ) {
-			stars -=1;
-			star[stars-1].className += "-o";
+			star[stars-(faltmov/4)].className += "-o";
 		}
 
 		if (staremp.length === 3 ){
