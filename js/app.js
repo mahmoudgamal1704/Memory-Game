@@ -29,6 +29,7 @@ let txt="";
 for (var i = 0; i < arr.length ; i++) {
 	txt = txt + arr[i].outerHTML + "\n";
 }
+
 main.innerHTML = txt ; 
 // add event reset for reset the game 
 rest.addEventListener('click',startgame);

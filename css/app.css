@@ -91,6 +91,7 @@ h1 {
     background: #02b3e4;
     cursor: default;
 }
+
 .deck .card.mismatch {
     height: 150px;
     width: 120px;
@@ -99,9 +100,7 @@ h1 {
     cursor: default;
     animation: shake 0.5s; 
     animation-iteration-count: 1;
-
 }
-
 
 .deck .card.show {
     font-size: 33px;
@@ -141,10 +140,12 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
 .score-panel .minuet    {
     padding-left: 30px;
     text-align: center;    
 }
+
 .model {
     text-align: center;
     display: none;
@@ -155,18 +156,22 @@ h1 {
     padding-top: 100px;
 
 }
+
 .model .sign {
     list-style: none;
     display: inline-block;
 }
+
 .model .sign i {
     font-size: 3em;
     color: green;
 }
+
 .model .bigtxt {
     font: 2em bold; 
     font-family: "Gill Sans", sans-serif; 
 }
+
 .model .play {
     height: 40px;
     width: 200px;
@@ -182,7 +187,7 @@ h1 {
         margin-bottom: 10px;
     }
 }
-/*first breakPoint*/
+/*secound breakPoint*/
 @media only screen and (max-width:700px){
     .score-panel {
     width: 70%;
@@ -196,6 +201,7 @@ h1 {
     width: 40%;
     }
 }
+/*third breakPoint*/
 @media only screen and (max-width:550px){
     .deck {
         width: 100%;
