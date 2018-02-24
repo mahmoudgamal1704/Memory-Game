@@ -22,8 +22,7 @@ const play = document.querySelector(".play");
 const stxt = document.querySelector(".smalltxt");
 let arr = Array.prototype.slice.call(cards);
 var totalSeconds = 0;
-//set interval for time of play
-setInterval(setTime, 1000);
+
 // for shhuffle the cards and add them to the DOM
 arr = shuffle(arr);
 let txt="";
@@ -76,8 +75,13 @@ function pad(val) {
 function open (crd) {
 	opencard[count] = crd;
 	count +=1;
-	crd.className= "card show open";
-	if (count == 2){
+	//set interval for time of play
+	if ( moves === 0 && count === 1 ) {
+		setInterval(setTime, 1000);
+	}
+	
+	crd.className = "card show open";
+	if (count === 2){
 		moves +=1;
 		num.textContent= moves;
 		check();
@@ -85,7 +89,7 @@ function open (crd) {
 }
 // check fn for 2 open cards
 function check () {
-	if (opencard[0].firstElementChild.className == opencard[1].firstElementChild.className){
+	if (opencard[0].firstElementChild.className === opencard[1].firstElementChild.className){
 		opencard[0].className="card match";
 		opencard[1].className="card match";
 		if (document.querySelectorAll(".card").length == document.querySelectorAll(".match").length){
@@ -111,9 +115,9 @@ function mismatch () {
 		count =0;
 		faltmov += 1;
 		// make stars decrement by one every 4 wrong time 
-		if (faltmov%4 == 0 ) {
+		if (faltmov%4 === 0 ) {
 			stars -=1;
-			star[stars].className += "-o";
+			star[stars-1].className += "-o";
 		}
 
 		if (staremp.length === 3 ){
@@ -134,7 +138,8 @@ function win (){
 }
 // add event for click ad any card to open it 
 main.addEventListener('click',function(event){
-	if (event.target.className == "card" && count < 2 && opencard.length  < 2) {
+
+	if (event.target.className === "card" && count < 2 && opencard.length  < 2) {
 		open(event.target);
 	}
 });
